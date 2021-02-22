@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Interfaces;
@@ -21,6 +23,7 @@ namespace Web.Controllers
             _owner = owner;
             _portfolio = portfolio;
         }
+
         public IActionResult Index()
         {
             var homeViewModel = new HomeViewModel
@@ -37,5 +40,31 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactModel contact)
+        {
+            var mail = new MailMessage();
+            var loginInfo = new NetworkCredential("hamza.khbbazalhalabi@gmail.com", "password"); // TODO: password eintragen
+
+            mail.From = new MailAddress(contact.EMail);
+            mail.To.Add(new MailAddress("hamza.khbbazalhalabi@gmail.com"));
+            mail.Subject = contact.Subject;
+            mail.Body = contact.Message;
+            mail.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587); // Gmail Port
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = loginInfo;
+
+            smtpClient.Send(mail);
+
+            return View();
+        }
     }
 }
