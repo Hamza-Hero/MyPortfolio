@@ -36,7 +36,7 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                       <img src="~/img/portfolio/@item.ImageUrl" class="img-thumbnail" style="width:64px; height:64px;" />
+                        <img src="~/img/portfolio/@item.ImageUrl" class="img-thumbnail" style="width:64px; height:64px;" />
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
@@ -47,5 +47,4 @@
             }
         </tbody>
     </table>
-
 </div>
