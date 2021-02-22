@@ -50,15 +50,18 @@ namespace Web.Controllers
         public ActionResult Contact(ContactModel contact)
         {
             var mail = new MailMessage();
-            var loginInfo = new NetworkCredential("hamza.khbbazalhalabi@gmail.com", "password"); // TODO: password eintragen
+
+            // TODO: password eintragen
+            // TODO: Email eintragen
+            var loginInfo = new NetworkCredential("Email", "password");
 
             mail.From = new MailAddress(contact.EMail);
-            mail.To.Add(new MailAddress("hamza.khbbazalhalabi@gmail.com"));
+            mail.To.Add(new MailAddress("Email.com"));
             mail.Subject = contact.Subject;
             mail.Body = contact.Message;
             mail.IsBodyHtml = true;
 
-            var smtpClient = new SmtpClient("smtp.gmail.com", 587); // Gmail Port
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587); // 587 Gmail Port
             smtpClient.EnableSsl = true;
             smtpClient.Credentials = loginInfo;
 

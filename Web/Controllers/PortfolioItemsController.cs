@@ -75,8 +75,6 @@ namespace Web.Controllers
             _portfolio.Entity.Insert(portfolioItem);
             _portfolio.Save();
             return RedirectToAction(nameof(Index));
-
-            //return View(model);
         }
 
         // GET: PortfolioItems/Edit/5
@@ -148,8 +146,6 @@ namespace Web.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
-
-            //return View(model);
         }
 
         // GET: PortfolioItems/Delete/5
